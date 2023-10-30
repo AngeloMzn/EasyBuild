@@ -6,6 +6,7 @@ public class Produto {
     private int quantidade;
     private String marca;
     private String validade;
+    private String preco;
     public Produto(int id, String descricao, boolean emEstoque, int quantidade, String marca, String validade) {
         this.id = id;
         this.descricao = descricao;
@@ -46,10 +47,17 @@ public class Produto {
     public void setMarca(String marca) {
         this.marca = marca;
     }
-    public String isValidade() {
+    public String getValidade() {
         return validade;
     }
     public void setValidade(String validade) {
         this.validade = validade;
     }
+    public String getPreco() {
+        return preco;
+    }
+    public void setPreco(String preco) {
+        this.preco = preco;
+    }
+
 }

@@ -51,8 +51,21 @@ public class ProdutoController {
 
     @FXML
     void btnBuscar(ActionEvent event) throws SQLException {
-        
+        String idText = input_id.getText().trim(); 
+        int id = 0; 
+        if (!idText.isEmpty()) {
+            try {
+                id = Integer.parseInt(idText); 
+            } catch (NumberFormatException e) {
+
+            }
+        }
+        String descricao = input_descricao.getText(); 
+        String marca = input_marca.getText(); 
+        ObservableList<Produto> produtos = FXCollections.observableArrayList(new ProdutoDAO().buscar(id, descricao, marca));
+        tabela_produto.setItems(produtos);
     }
+    
     public void initialize(URL url, ResourceBundle rb) throws SQLException{
         col_id.setCellValueFactory(new PropertyValueFactory<Produto, Integer>("id"));
         col_descricao.setCellValueFactory(new PropertyValueFactory<Produto, String>("descricao"));
@@ -67,4 +80,5 @@ public class ProdutoController {
         ObservableList<Produto> produtos = FXCollections.observableArrayList(new ProdutoDAO().getProdutos());
         tabela_produto.setItems(produtos);
     }
+    
 }

@@ -73,7 +73,12 @@ public class ProdutoController {
     }
 
     @FXML
-    void btnCarrinho(ActionEvent event) {
+    void btnExcluir(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnFinalizar(ActionEvent event) {
 
     }
 
@@ -84,7 +89,7 @@ public class ProdutoController {
 
     @FXML
     void btnEditar(ActionEvent event) {
-
+        
     }
 
     @FXML

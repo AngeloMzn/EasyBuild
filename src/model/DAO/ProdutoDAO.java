@@ -85,6 +85,14 @@ public class ProdutoDAO {
         pStatement.execute();
         return 1;
     }
+    public int delete(int id) throws SQLException{
+        this.appDAO.OpenDataBase();
+        String sql = "DELETE FROM produtos WHERE id = " + id;
+        Connection conexao = appDAO.getConexao();
+        PreparedStatement pStatement = conexao.prepareStatement(sql);
+        pStatement.execute();
+        return 1; 
+    }
 
     
 }

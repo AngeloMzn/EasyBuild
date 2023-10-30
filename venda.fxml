@@ -23,15 +23,15 @@
       <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="826.0" spacing="10.0">
          <children>
             <Label text="id:" />
-            <TextField />
+            <TextField fx:id="id_ItemVenda" />
             <Label text="descrição:" />
-            <TextField />
+            <TextField fx:id="descricao_itemVenda" />
             <Label text="Marca:" />
-            <TextField />
+            <TextField fx:id="marca_ItemVenda" />
             <Label text="preço:" />
-            <TextField />
+            <TextField fx:id="preco_ItemVenda" />
             <Button mnemonicParsing="false" onAction="#btnBuscarItemVenda" text="buscar" />
-            <Button mnemonicParsing="false" text="remover" />
+            <Button mnemonicParsing="false" onAction="#removerItemVenda" text="remover" />
          </children>
          <VBox.margin>
             <Insets />
@@ -40,7 +40,7 @@
             <Insets left="5.0" />
          </padding>
       </HBox>
-      <TableView prefHeight="232.0" prefWidth="626.0">
+      <TableView fx:id="tabela_venda" prefHeight="232.0" prefWidth="626.0">
         <columns>
           <TableColumn prefWidth="75.0" text="id" />
           <TableColumn prefWidth="428.0" text="descrição" />
@@ -70,6 +70,6 @@
             <TextField prefHeight="25.0" prefWidth="249.0" />
          </children>
       </HBox>
-      <Button mnemonicParsing="false" text="Finalizar Venda" />
+      <Button mnemonicParsing="false" onAction="#finalizarVenda" text="Finalizar Venda" />
    </children>
 </VBox>

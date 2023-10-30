@@ -24,8 +24,6 @@ public class App extends Application {
             primaryStage.setTitle("Produtos");
             primaryStage.setScene(scene);
             primaryStage.show();
-
-            // Obtém o controlador após carregar o FXML
             ProdutoController controller = loader.getController();
             controller.initialize(null, null);
         } catch (IOException e) {

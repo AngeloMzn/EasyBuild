@@ -23,9 +23,9 @@ public class ProdutoDAO {
     }
     public List<Produto> buscar(int id, String descricao, String marca) throws SQLException{
         this.appDAO.OpenDataBase();
-        String sql = "SELECT * FROM produtos WHERE";
+        String sql = "SELECT * FROM produtos WHERE 1=1";
         if (id > 0) {
-            sql += " id = " + id;
+            sql += " AND id = " + id;
         }
         if (descricao != null && !descricao.isEmpty()) {
             sql += " AND descricao LIKE '%" + descricao + "%'";
@@ -71,6 +71,19 @@ public class ProdutoDAO {
             produtos.add(produto);
         }
         return produtos;
+    }
+    public int inserir(String descricao, String marca, String validade, String preco, int quantidade) throws SQLException{
+        this.appDAO.OpenDataBase();
+        String sql = "INSERT INTO produtos (descricao, marca, validade, preco, quantidade, em_estoque) VALUES(?,?,?,?,?, 1)";
+        Connection conexao = appDAO.getConexao();
+        PreparedStatement pStatement = conexao.prepareStatement(sql);
+        pStatement.setString(1, descricao);
+        pStatement.setString(2, marca);
+        pStatement.setString(3, validade);
+        pStatement.setString(4, preco);
+        pStatement.setInt(5, quantidade);
+        pStatement.execute();
+        return 1;
     }
 
     

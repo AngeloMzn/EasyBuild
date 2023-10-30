@@ -93,6 +93,25 @@ public class ProdutoDAO {
         pStatement.execute();
         return 1; 
     }
-
+    public int editar(String descricao, String marca, String validade, String preco, int quantidade) {
+        this.appDAO.OpenDataBase();
+        Connection conexao = appDAO.getConexao();
+        try {
+            String sql = "UPDATE produtos SET descricao = ?, marca = ?, validade = ?, preco = ?, quantidade = ? WHERE em_estoque = ?";
+            PreparedStatement pStatement = conexao.prepareStatement(sql);
+            pStatement.setString(1, descricao);
+            pStatement.setString(2, marca);
+            pStatement.setString(3, validade);
+            pStatement.setString(4, preco);
+            pStatement.setInt(5, quantidade);
+            pStatement.setBoolean(6, true); 
+            int rowsUpdated = pStatement.executeUpdate();
+            return rowsUpdated; 
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1; 
+        } 
+    }
+    
     
 }

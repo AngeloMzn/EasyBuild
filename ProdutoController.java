@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.Node;
 import javafx.collections.FXCollections;
@@ -16,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Produto;
 import model.DAO.ProdutoDAO;
@@ -73,8 +75,13 @@ public class ProdutoController {
     }
 
     @FXML
-    void btnExcluir(ActionEvent event) {
-
+    void btnExcluir(ActionEvent event) throws SQLException {
+        Produto selectedProduto = tabela_produto.getSelectionModel().getSelectedItem();
+        if (selectedProduto != null) {
+            int selectedId = selectedProduto.getId();
+            ProdutoDAO  produtoDao = new ProdutoDAO();
+            produtoDao.delete(selectedId);
+        }
     }
 
     @FXML
@@ -88,8 +95,27 @@ public class ProdutoController {
     }
 
     @FXML
-    void btnEditar(ActionEvent event) {
-        
+    void btnEditar(ActionEvent event) throws SQLException {
+        Produto selectedProduto = tabela_produto.getSelectionModel().getSelectedItem();
+        if (selectedProduto != null) {
+            int selectedId = selectedProduto.getId();
+            ProdutoDAO produtoDAO = new ProdutoDAO();
+            List<Produto> produtos= produtoDAO.buscar(selectedId, null, null);
+            for (Produto produto : produtos) {
+                String descricao = produto.getDescricao();
+                String marca = produto.getMarca();
+                String preco = produto.getPreco();
+                String validade = produto.getValidade();
+                String quantidade = parseInt(produto.getQuantidade());
+            }
+            
+        }
+    }
+    
+    
+    @FXML
+    void colGetId(MouseEvent event) {
+        col_id.getCellData(0);
     }
 
     @FXML

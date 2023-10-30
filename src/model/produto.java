@@ -1,18 +1,20 @@
 package model;
-public class produto {
+public class Produto {
     private int id;
-    private String descrição;
+    private String descricao;
     private boolean emEstoque;
     private int quantidade;
     private String marca;
-    private boolean validade;
-    public produto(int id, String descrição, boolean emEstoque, int quantidade, String marca, boolean validade) {
+    private String validade;
+    public Produto(int id, String descricao, boolean emEstoque, int quantidade, String marca, String validade) {
         this.id = id;
-        this.descrição = descrição;
+        this.descricao = descricao;
         this.emEstoque = emEstoque;
         this.quantidade = quantidade;
         this.marca = marca;
         this.validade = validade;
+    }
+    public Produto() {
     }
     public int getId() {
         return id;
@@ -20,11 +22,11 @@ public class produto {
     public void setId(int id) {
         this.id = id;
     }
-    public String getDescrição() {
-        return descrição;
+    public String getDescricao() {
+        return descricao;
     }
-    public void setDescrição(String descrição) {
-        this.descrição = descrição;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
     public boolean isEmEstoque() {
         return emEstoque;
@@ -44,10 +46,10 @@ public class produto {
     public void setMarca(String marca) {
         this.marca = marca;
     }
-    public boolean isValidade() {
+    public String isValidade() {
         return validade;
     }
-    public void setValidade(boolean validade) {
+    public void setValidade(String validade) {
         this.validade = validade;
     }
 }

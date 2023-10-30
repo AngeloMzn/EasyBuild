@@ -5,11 +5,10 @@ import java.sql.*;
 public class AppDAO {
     public static String url = "jdbc:mysql://localhost:3306/easybuild";
     public static String user = "root";
-    public static String pwd = "";
+    public static String pwd = "gW392:D-?26F";
 
-    private Connection conexao = null;
+    public Connection conexao = null;
     private Statement statement = null;
-    private ResultSet result = null;
 
     public void OpenDataBase() {
         try {
@@ -26,11 +25,8 @@ public class AppDAO {
         conexao.close();
     }
 
-    public void query(String sql){
-        try {
-            statement.executeUpdate(sql);
-        } catch (SQLException e) {
-           System.out.println("Query executada com erro: " + e.getMessage());
-        }
+    public Connection getConexao() {
+        return conexao;
     }
+    
 }

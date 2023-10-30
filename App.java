@@ -1,5 +1,7 @@
 import java.io.IOException;
+import java.sql.SQLException;
 
+import core.AppDAO;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,27 +11,30 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import model.Produto;
+import model.DAO.ProdutoDAO;
 
 public class App extends Application {
     @Override
-    public void start(Stage primaryStage) {
-
-        Parent root;
+    public void start(Stage primaryStage) throws SQLException {
         try {
-            root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Produto.fxml"));
+            Parent root = loader.load();
             Scene scene = new Scene(root);
-
-            primaryStage.setTitle("Hello World!");
+            primaryStage.setTitle("Produtos");
             primaryStage.setScene(scene);
             primaryStage.show();
 
+            // Obtém o controlador após carregar o FXML
+            ProdutoController controller = loader.getController();
+            controller.initialize(null, null);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         launch(args);
     }
 }
+

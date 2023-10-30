@@ -1,0 +1,14 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\javalibs\\mysql-connector-j-8.2.0\\mysql-connector-j-8.2.0.jar",
+        "c:\\javalibs\\javafx-sdk-21\\lib\\javafx.base.jar",
+        "c:\\javalibs\\javafx-sdk-21\\lib\\javafx.controls.jar",
+        "c:\\javalibs\\javafx-sdk-21\\lib\\javafx.fxml.jar",
+        "c:\\javalibs\\javafx-sdk-21\\lib\\javafx.graphics.jar",
+        "c:\\javalibs\\javafx-sdk-21\\lib\\javafx.media.jar",
+        "c:\\javalibs\\javafx-sdk-21\\lib\\javafx.swing.jar",
+        "c:\\javalibs\\javafx-sdk-21\\lib\\javafx.web.jar",
+        "c:\\javalibs\\javafx-sdk-21\\lib\\javafx-swt.jar"
+    ]
+}

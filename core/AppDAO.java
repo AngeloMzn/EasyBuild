@@ -5,7 +5,7 @@ import java.sql.*;
 public class AppDAO {
     public static String url = "jdbc:mysql://localhost:3306/easybuild";
     public static String user = "root";
-    public static String pwd = "gW392:D-?26F";
+    public static String pwd = "12345";
 
     public Connection conexao = null;
     private Statement statement = null;

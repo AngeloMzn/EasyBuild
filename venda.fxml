@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="564.0" prefWidth="1015.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VendaController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="564.0" prefWidth="1122.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VendaController">
    <children>
       <HBox alignment="TOP_CENTER" prefHeight="40.0" prefWidth="636.0">
          <children>
@@ -42,10 +41,11 @@
       </HBox>
       <TableView fx:id="tabela_venda" prefHeight="232.0" prefWidth="626.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="id" />
-          <TableColumn prefWidth="428.0" text="descrição" />
-            <TableColumn minWidth="0.0" prefWidth="256.0" text="marca" />
-            <TableColumn minWidth="0.0" prefWidth="239.0" text="preço" />
+          <TableColumn fx:id="col_venda_id" prefWidth="75.0" text="id" />
+          <TableColumn fx:id="col_descricao" prefWidth="428.0" text="descrição" />
+            <TableColumn fx:id="col_marca" minWidth="0.0" prefWidth="256.0" text="marca" />
+            <TableColumn fx:id="col_quantidade" prefWidth="106.40008544921875" text="quantidade" />
+            <TableColumn fx:id="col_preco" minWidth="0.0" prefWidth="246.39984130859375" text="preço" />
         </columns>
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -64,7 +64,7 @@
                   <Insets left="100.0" />
                </padding>
                <HBox.margin>
-                  <Insets left="120.0" />
+                  <Insets left="225.0" />
                </HBox.margin>
             </Label>
             <TextField prefHeight="25.0" prefWidth="249.0" />

@@ -85,8 +85,21 @@ public class ProdutoController {
     }
 
     @FXML
-    void btnFinalizar(ActionEvent event) {
-
+    void btnFinalizar(ActionEvent event) throws SQLException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("venda.fxml"));
+        Parent root;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        VendaController novaPaginaController = loader.getController(); 
+        novaPaginaController.initialize(null, null);
+        Stage stage = new Stage();
+        Scene cena = new Scene(root);
+        stage.setScene(cena);
+        stage.show();
     }
 
     @FXML
@@ -96,7 +109,7 @@ public class ProdutoController {
 
     @FXML
     void btnEditar(ActionEvent event) throws SQLException {
-        Produto selectedProduto = tabela_produto.getSelectionModel().getSelectedItem();
+        /*Produto selectedProduto = tabela_produto.getSelectionModel().getSelectedItem();
         if (selectedProduto != null) {
             int selectedId = selectedProduto.getId();
             ProdutoDAO produtoDAO = new ProdutoDAO();
@@ -109,7 +122,7 @@ public class ProdutoController {
                 String quantidade = parseInt(produto.getQuantidade());
             }
             
-        }
+        }*/
     }
     
     

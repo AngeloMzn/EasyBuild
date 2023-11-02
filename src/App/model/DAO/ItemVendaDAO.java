@@ -100,4 +100,18 @@ public class ItemVendaDAO extends AppDAO {
         }
         return itensVenda;
     }
+    public float calculaTotal(int venda_id) throws SQLException {
+        this.appDAO.OpenDataBase();
+        String sql = "SELECT SUM(quantidade * CAST(REPLACE(preco, ',', '.') AS DECIMAL(10, 2)) ) as total FROM item_venda WHERE venda_id = ?";
+        Connection conexao = appDAO.getConexao();
+        PreparedStatement pStatement = conexao.prepareStatement(sql);
+        pStatement.setInt(1, venda_id);
+        ResultSet result = pStatement.executeQuery();
+        float total = 0.00f; 
+        if (result.next()) { 
+            total = result.getFloat("total"); 
+        }
+        return total;
+    }
+    
 }

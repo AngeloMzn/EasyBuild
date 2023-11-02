@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="564.0" prefWidth="1122.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="App.controller.VendaController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="564.0" prefWidth="1122.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.controller.VendaController">
    <children>
       <HBox alignment="TOP_CENTER" prefHeight="40.0" prefWidth="636.0">
          <children>
@@ -31,6 +31,7 @@
             <TextField fx:id="preco_ItemVenda" />
             <Button mnemonicParsing="false" onAction="#btnBuscarItemVenda" text="buscar" />
             <Button mnemonicParsing="false" onAction="#removerItemVenda" text="remover" />
+            <Button mnemonicParsing="false" onAction="#addCliente" text="+cliente" />
          </children>
          <VBox.margin>
             <Insets />
@@ -58,7 +59,7 @@
                   <Insets left="3.0" />
                </HBox.margin>
             </Label>
-            <TextField prefHeight="25.0" prefWidth="333.0" />
+            <TextField fx:id="formaDePagamento" prefHeight="25.0" prefWidth="333.0" />
             <Label text="Valor total:">
                <padding>
                   <Insets left="100.0" />
@@ -67,7 +68,7 @@
                   <Insets left="225.0" />
                </HBox.margin>
             </Label>
-            <TextField prefHeight="25.0" prefWidth="249.0" />
+            <TextField fx:id="valorTotal" prefHeight="25.0" prefWidth="249.0" />
          </children>
       </HBox>
       <Button mnemonicParsing="false" onAction="#finalizarVenda" text="Finalizar Venda" />

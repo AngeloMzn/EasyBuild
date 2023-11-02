@@ -1,5 +1,6 @@
 package App.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -12,10 +13,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class VendaController {
     private int id_venda;
@@ -45,6 +50,12 @@ public class VendaController {
 
     @FXML
     private TextField preco_ItemVenda;
+
+    @FXML
+    private TextField formaDePagamento;
+
+    @FXML
+    private TextField valorTotal;
 
     @FXML
     private TableView<ItemVenda> tabela_venda = new TableView<ItemVenda>();
@@ -80,7 +91,26 @@ public class VendaController {
             int selectedId = selectedItemVenda.getId();
             ItemVendaDAO itemVendaDAO = new ItemVendaDAO();
             itemVendaDAO.delete(selectedId);
+            calculaTotal();
+            preencherTabela();
         }
+    }
+
+    @FXML
+    void addCliente(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/App/view/cadastrarCliente.fxml"));
+        Parent root;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        ClienteController novaPaginaController = loader.getController();
+        Stage stage = new Stage();
+        Scene cena = new Scene(root);
+        stage.setScene(cena);
+        stage.show();
     }
 
     public void initialize(URL url, ResourceBundle rb) throws SQLException {
@@ -89,12 +119,20 @@ public class VendaController {
         col_marca.setCellValueFactory(new PropertyValueFactory<ItemVenda, String>("marca"));
         col_preco.setCellValueFactory(new PropertyValueFactory<ItemVenda, String>("preco"));
         col_quantidade.setCellValueFactory(new PropertyValueFactory<ItemVenda, Integer>("quantidade"));
+        valorTotal.setEditable(false);
+        calculaTotal();
         preencherTabela();
     }
 
-    private void preencherTabela() throws SQLException {
-        ObservableList<ItemVenda> itensVenda = FXCollections.observableArrayList(new ItemVendaDAO().getItensVenda(this.id_venda));
+    public void preencherTabela() throws SQLException {
+        ObservableList<ItemVenda> itensVenda = FXCollections
+                .observableArrayList(new ItemVendaDAO().getItensVenda(this.id_venda));
         tabela_venda.setItems(itensVenda);
+    }
+
+    public void calculaTotal() throws SQLException {
+        float total = new ItemVendaDAO().calculaTotal(this.id_venda);
+        valorTotal.setText(String.valueOf(total));
     }
 
     public void setIdVenda(int id_venda) {

@@ -85,6 +85,7 @@ public class ProdutoController {
             int selectedId = selectedProduto.getId();
             ProdutoDAO produtoDao = new ProdutoDAO();
             produtoDao.delete(selectedId);
+            preencherTabela();
         }
     }
 
@@ -193,7 +194,7 @@ public class ProdutoController {
         
     }
 
-    private void preencherTabela() throws SQLException {
+    public void preencherTabela() throws SQLException {
         ObservableList<Produto> produtos = FXCollections.observableArrayList(new ProdutoDAO().getProdutos());
         tabela_produto.setItems(produtos);
     }

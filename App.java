@@ -1,7 +1,10 @@
 import java.io.IOException;
 import java.sql.SQLException;
 
-import core.AppDAO;
+import App.controller.ProdutoController;
+import App.model.Produto;
+import App.model.DAO.ProdutoDAO;
+import core.app.AppDAO;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,14 +14,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import model.Produto;
-import model.DAO.ProdutoDAO;
 
 public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws SQLException {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Produto.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("App/view/Produto.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             primaryStage.setTitle("Produtos");

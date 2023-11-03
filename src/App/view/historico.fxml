@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="545.0" prefWidth="540.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.controller.HistoricoController">
+    <center>
+        <VBox alignment="CENTER" spacing="10">
+            <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Historico da Venda" />
+            <HBox spacing="10">
+                <Label text="Data da Venda:">
+               <padding>
+                  <Insets left="10.0" />
+               </padding></Label>
+                <Label fx:id="dataVendaLabel" text="" />
+            </HBox>
+            <HBox spacing="10">
+                <Label fx:id="clienteLabel" text="Cliente:">
+               <padding>
+                  <Insets left="10.0" />
+               </padding></Label>
+                <Label fx:id="clienteLabel" text="" />
+            </HBox>
+            <TableView fx:id="produtosTableView">
+                <columns>
+                    <TableColumn fx:id="produtoColumn" prefWidth="208.0" text="Produto" />
+                    <TableColumn fx:id="quantidadeColumn" prefWidth="152.0" text="Quantidade" />
+                    <TableColumn fx:id="valorUnitarioColumn" prefWidth="179.0" text="preço" />
+                </columns>
+            </TableView>
+            <HBox spacing="10">
+                <Label text="Valor Total:" />
+                <Label fx:id="valorTotalLabel" text="" />
+            <padding>
+               <Insets left="10.0" />
+            </padding>
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Método de Pagamento:" />
+                <Label fx:id="metodoPagamentoLabel" text="" />
+            <VBox.margin>
+               <Insets left="10.0" />
+            </VBox.margin>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

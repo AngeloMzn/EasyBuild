@@ -2,13 +2,24 @@ package App.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
-
+import java.time.LocalDate;
+import App.model.Cliente;
+import App.model.HistoricoVenda;
 import App.model.ItemVenda;
 import App.model.Produto;
+import App.model.Venda;
+import App.model.DAO.ClienteDAO;
+import App.model.DAO.HistoricoVendaDAO;
 import App.model.DAO.ItemVendaDAO;
 import App.model.DAO.ProdutoDAO;
+import App.model.DAO.VendaDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +31,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class VendaController {
@@ -80,8 +92,40 @@ public class VendaController {
     }
 
     @FXML
-    void finalizarVenda(ActionEvent event) {
+    void finalizarVenda(ActionEvent event) throws SQLException, ParseException {
+        HistoricoVenda historico = new HistoricoVenda();
+        ClienteDAO clienteDAO = new ClienteDAO();
+        Cliente cliente = clienteDAO.buscarId(this.id_venda);
+        ItemVendaDAO itemVendaDAO = new ItemVendaDAO();
+        List<ItemVenda> itensVenda = itemVendaDAO.getItensVenda(id_venda);
+        VendaDAO vendaDAO = new VendaDAO();
+        Venda venda = vendaDAO.buscarVenda(id_venda);
+        LocalDate today = LocalDate.now();
+        Date sqlDate = Date.valueOf(today);
+        if (cliente.getId() != 0) {
+            historico.setData(sqlDate);
+            historico.setId_cliente(cliente.getId());
+            historico.setVenda_id(this.id_venda);
+            historico.setMetodoPagamento(this.formaDePagamento.getText());
+            historico.setValorTotal(this.valorTotal.getText());
+            venda.setStatus("concluido");
+            vendaDAO.atualizar(venda);
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/App/view/historico.fxml"));
+                Parent root = loader.load();
+                HistoricoController novaPaginaController = loader.getController(); 
+                novaPaginaController.initialize(null, null, venda.getData(), cliente.getNome() + cliente.getSobrenome(),
+                        this.valorTotal.getText(), this.formaDePagamento.getText(), id_venda);
 
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            exibirMensagemDeErro("Verifique se o cliente foi cadastrado ou se o método de pagamento foi adicionado");
+        }
     }
 
     @FXML
@@ -107,6 +151,7 @@ public class VendaController {
             return;
         }
         ClienteController novaPaginaController = loader.getController();
+        novaPaginaController.setVenda_id(id_venda);
         Stage stage = new Stage();
         Scene cena = new Scene(root);
         stage.setScene(cena);
@@ -137,5 +182,23 @@ public class VendaController {
 
     public void setIdVenda(int id_venda) {
         this.id_venda = id_venda;
+    }
+
+    private void exibirMensagemDeErro(String mensagem) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/App/view/error.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Erro");
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            ErrorController controller = loader.getController();
+            controller.setMensagemErro(mensagem);
+            controller.setStage(stage);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,8 +1,10 @@
 package App.model;
 
+import java.sql.Date;
+
 public class Venda {
     private int id;
-    private String data;
+    private Date data;
     private String status;
     private String codigoVenda;
     
@@ -21,10 +23,10 @@ public class Venda {
     public void setId(int id) {
         this.id = id;
     }
-    public String getData() {
+    public Date getData() {
         return data;
     }
-    public void setData(String data) {
+    public void setData(Date data) {
         this.data = data;
     }
     public void setStatus(String status) {

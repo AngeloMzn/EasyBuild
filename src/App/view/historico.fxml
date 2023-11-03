@@ -44,7 +44,7 @@
                 <Label text="Método de Pagamento:" />
                 <Label fx:id="metodoPagamentoLabel" text="" />
             <VBox.margin>
-               <Insets left="10.0" />
+               <Insets bottom="10.0" left="10.0" />
             </VBox.margin>
             </HBox>
         </VBox>
